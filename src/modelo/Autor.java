@@ -37,5 +37,21 @@ public class Autor {
 		return "Autor [codigo=" + codigo + ", nome=" + nome
 				+ ", nacionalidade=" + nacionalidade + "]";
 	}
+	
+	
+	public boolean equals(Object obj) {
+		Autor autor = (Autor) obj;
+		if(autor.getCodigo().equals(this.codigo))
+			return true;
+		
+		return false;
+	}
+	
 
 }
+
+
+
+
+
+

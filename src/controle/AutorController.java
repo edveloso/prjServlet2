@@ -30,10 +30,17 @@ public class AutorController extends HttpServlet {
 			System.out.println(codigo);
 			Integer codigoNumerico = Integer.parseInt(codigo);
 			dao.deletar(codigoNumerico);
+			List<Autor> autores = dao.listaTodos();
+			req.setAttribute("lista_autores", autores);
+			req.getRequestDispatcher("autores.jsp").forward(req, resp);
 		}
-		List<Autor> autores = dao.listaTodos();
-		req.setAttribute("lista_autores", autores);
-		req.getRequestDispatcher("autores.jsp").forward(req, resp);
+		else if("iniciarAlterar".equals(acao)){
+			String codigo = req.getParameter("codigo");
+			Integer codigoNumerico = Integer.parseInt(codigo);
+			Autor autor = dao.obterAutorPeloCodigo(codigoNumerico);
+			req.setAttribute("autor", autor);
+			req.getRequestDispatcher("editar.jsp").forward(req, resp);
+		}
 		
 	}
 	
@@ -52,6 +59,19 @@ public class AutorController extends HttpServlet {
 			
 			dao.gravar(autor);
 		}
+		else if("efetivarAlteracao".equals(acao)){
+			String nome = request.getParameter("nome_autor");
+			String nacionalidade = request.getParameter("nacionalidade_autor");
+			String codigo = request.getParameter("codigo");
+			Integer codigoNumerico = Integer.parseInt(codigo);
+			Autor autor = new Autor();
+			autor.setNacionalidade(nacionalidade);
+			autor.setNome(nome);
+			autor.setCodigo(codigoNumerico);
+			dao.alterar(autor);
+		}
+		
+		
 		
 		List<Autor> autores = dao.listaTodos();
 		request.setAttribute("lista_autores", autores);

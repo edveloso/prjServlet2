@@ -49,7 +49,7 @@
 		   List<Autor> autores = (List<Autor>) 
 		   						request.getAttribute("lista_autores");
 		
-		   if(autores != null)
+		   if(autores != null )
 			   for(Autor autor : autores){
 		%>
 		
@@ -57,10 +57,16 @@
 			<td> <%= autor.getNome() %> </td>
 			<td>  <%= autor.getNacionalidade() %>  </td>
 	
-			<td> 
-	 <a href="AutorController?acao=deletar&codigo=<%= autor.getCodigo() %>">
-	      Deletar
+			<td style="padding-left: 20px">
+			 
+	 <a  onclick="return confirma()" href="AutorController?acao=deletar&codigo=<%= autor.getCodigo() %>">
+	      <img width="30px" alt="Deletar" src="./img/file_delete.png">
 	 </a>
+	 &nbsp;&nbsp;&nbsp;		 
+	 <a  href="AutorController?acao=iniciarAlterar&codigo=<%= autor.getCodigo() %>">
+	      <img width="30px" alt="Alterar" src="./img/file_edit.png">
+	 </a>
+
 			
 			</td>
 		</tr>
@@ -75,14 +81,15 @@
 	</table>
 
 
-
-
-
-
-
-
-
-
+  <script type="text/javascript">
+      function confirma(){
+    	  	var retorno = confirm("Deseja mesmo deletar?");
+    	  	if(retorno)
+    	  		return true;
+    	  
+    	    return false;
+      }
+  </script>
 
 
 
