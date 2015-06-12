@@ -42,6 +42,12 @@ public class AutorController extends HttpServlet {
 			req.getRequestDispatcher("editar.jsp").forward(req, resp);
 		}
 		
+		else if("listar".equals(acao)){
+			List<Autor> autores = dao.listaTodos();
+			req.setAttribute("lista_autores", autores);
+			req.getRequestDispatcher("autores.jsp").forward(req, resp);
+		}
+		
 	}
 	
 	
@@ -75,7 +81,6 @@ public class AutorController extends HttpServlet {
 		
 		List<Autor> autores = dao.listaTodos();
 		request.setAttribute("lista_autores", autores);
-		
 		request.getRequestDispatcher("autores.jsp").forward(request, response);
 		
 		

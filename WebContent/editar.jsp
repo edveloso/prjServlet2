@@ -21,7 +21,7 @@
 
 	<fieldset>
 		<legend>Alteração de autor</legend>
-		<form action="AutorController?acao=efetivarAlteracao" method="post">
+		<form name="" action="AutorController?acao=efetivarAlteracao" method="post">
 			<input 
 				type="hidden" 
 				name="codigo" 
@@ -49,7 +49,7 @@
 
 	<script type="text/javascript">
 	   function cancela(){
-		   window.location.href = "autores.jsp";
+		   window.location.href = "AutorController?acao=listar";
 	   }
 	</script>
 
